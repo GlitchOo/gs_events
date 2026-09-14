@@ -5,7 +5,7 @@ lua54 'yes'
 
 author 'Glitch0o'
 description 'Easy event handler for RedM'
-version '1.0.0'
+version '1.1.0'
 
 shared_scripts {
     'shared/events.lua',
@@ -15,4 +15,9 @@ shared_scripts {
 client_scripts {
     'client/dataview.lua',
     'client/main.lua'
+}
+
+exports {
+    'ListenTo',
+    'RemoveListener'
 }

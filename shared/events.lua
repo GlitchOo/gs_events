@@ -32,10 +32,10 @@ Events = {
             EventGroup = 0,
             DataSize = 1
         },
---      ['EVENT_CHALLENGE_GOAL_UPDATE'] = {
---          EventGroup = 0,
---          DataSize = 1
---      },
+        ['EVENT_CHALLENGE_GOAL_UPDATE'] = {
+            EventGroup = 0,
+            DataSize = 1
+        },
         ['EVENT_CHALLENGE_REWARD'] = {
             EventGroup = 0,
             DataSize = 3
@@ -54,15 +54,19 @@ Events = {
         },
         ['EVENT_ENTITY_BROKEN'] = {
             EventGroup = 0,
-            DataSize = 9
+            DataSize = 9,
+            -- Slot 4 is ??? damage amount (same layout as DAMAGED/DESTROYED).
+            FloatSlots = { [4] = true, [6] = true, [7] = true, [8] = true },
         },
         ['EVENT_ENTITY_DAMAGED'] = {
             EventGroup = 0,
-            DataSize = 9
+            DataSize = 9,
+            FloatSlots = { [4] = true, [6] = true, [7] = true, [8] = true },
         },
         ['EVENT_ENTITY_DESTROYED'] = {
             EventGroup = 0,
-            DataSize = 9
+            DataSize = 9,
+            FloatSlots = { [4] = true, [6] = true, [7] = true, [8] = true },
         },
         ['EVENT_ENTITY_DISARMED'] = {
             EventGroup = 0,
@@ -70,7 +74,8 @@ Events = {
         },
         ['EVENT_ENTITY_EXPLOSION'] = {
             EventGroup = 0,
-            DataSize = 6
+            DataSize = 6,
+            FloatSlots = { [3] = true, [4] = true, [5] = true },
         },
         ['EVENT_ENTITY_HOGTIED'] = {
             EventGroup = 0,
@@ -122,7 +127,9 @@ Events = {
         },
         ['EVENT_LOOT_PLANT_START'] = {
             EventGroup = 0,
-            DataSize = 36
+            -- discoveries lists 36; sniff on current build: GET_EVENT_DATA only succeeds at 2
+            -- data[1]=behavior?, data[2]=looted entity/hash?
+            DataSize = 2
         },
         ['EVENT_LOOT_VALIDATION_FAIL'] = {
             EventGroup = 0,
@@ -134,7 +141,25 @@ Events = {
         },
         ['EVENT_MOUNT_OVERSPURRED'] = {
             EventGroup = 0,
-            DataSize = 6
+            DataSize = 6,
+            -- Slot 2 = ??? (float) horse rage amount
+            FloatSlots = { [2] = true },
+        },
+        ['EVENT_OBJECT_INTERACTION'] = {
+            EventGroup = 0,
+            DataSize = 10
+        },
+        ['EVENT_PED_ANIMAL_INTERACTION'] = {
+            EventGroup = 0,
+            DataSize = 3
+        },
+        ['EVENT_PED_CREATED'] = {
+            EventGroup = 0,
+            DataSize = 1
+        },
+        ['EVENT_PED_DESTROYED'] = {
+            EventGroup = 0,
+            DataSize = 1
         },
         ['EVENT_PED_HAT_KNOCKED_OFF'] = {
             EventGroup = 0,
@@ -178,7 +203,8 @@ Events = {
         },
         ['EVENT_PLAYER_PROMPT_TRIGGERED'] = {
             EventGroup = 0,
-            DataSize = 10
+            DataSize = 10,
+            FloatSlots = { [4] = true, [5] = true, [6] = true },
         },
         ['EVENT_RAN_OVER_PED'] = {
             EventGroup = 0,
@@ -264,9 +290,11 @@ Events = {
         },
         ['EVENT_NETWORK_DAMAGE_ENTITY'] = {
             EventGroup = 1,
-            DataSize = 32
+            DataSize = 32,
+            -- Damage / VictimSpeed / DamagerSpeed
+            FloatSlots = { [2] = true, [8] = true, [9] = true },
         },
-        ['EVENT_NETWORK_DAMAGE_ENTITY'] = {
+        ['EVENT_NETWORK_GANG'] = {
             EventGroup = 1,
             DataSize = 18
         },
@@ -288,7 +316,9 @@ Events = {
         },
         ['EVENT_NETWORK_INCAPACITATED_ENTITY'] = {
             EventGroup = 1,
-            DataSize = 4
+            DataSize = 4,
+            -- Damage
+            FloatSlots = { [3] = true },
         },
         ['EVENT_NETWORK_LASSO_ATTACH'] = {
             EventGroup = 1,
@@ -412,7 +442,8 @@ Events = {
         },
         ['EVENT_NETWORK_PROJECTILE_ATTACHED'] = {
             EventGroup = 1,
-            DataSize = 6
+            DataSize = 6,
+            FloatSlots = { [2] = true, [3] = true, [4] = true },
         },
         ['EVENT_NETWORK_PROJECTILE_NO_DAMAGE_IMPACT'] = {
             EventGroup = 1,
@@ -442,22 +473,6 @@ Events = {
             EventGroup = 1,
             DataSize = 3
         },
-        ['EVENT_OBJECT_INTERACTION'] = {
-            EventGroup = 1,
-            DataSize = 10
-        },
-        ['EVENT_PED_ANIMAL_INTERACTION'] = {
-            EventGroup = 1,
-            DataSize = 3
-        },
-        ['EVENT_PED_CREATED'] = {
-            EventGroup = 1,
-            DataSize = 1
-        },
-        ['EVENT_PED_DESTROYED'] = {
-            EventGroup = 1,
-            DataSize = 1
-        }
     },
     [2] = {
         ['EVENT_SCENARIO_ADD_PED'] = {
