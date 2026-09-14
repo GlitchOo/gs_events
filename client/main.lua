@@ -48,12 +48,11 @@ end
 local function DispatchEvent(eventDef, data)
     local hooks = Listeners[eventDef.Name]
     if hooks then
-        local eventName = eventDef.Name
         for i = 1, #hooks do
             local hook = hooks[i]
             if hook then
                 CreateThread(function()
-                    local ok, err = pcall(hook.callback, eventName, data)
+                    local ok, err = pcall(hook.callback, data)
                     if not ok then
                         print(('^1[gs_events]^7 listener %d (%s) failed: %s'):format(
                             hook.id, hook.resource or '?', tostring(err)

@@ -3,7 +3,7 @@
 Client event queue helper for RedM. Register only the events you care about; the resource polls those queues and runs your callbacks without blocking the poll loop.
 
 ```lua
-local listenerId = exports.gs_events:ListenTo('EVENT_ENTITY_DAMAGED', function(eventName, data)
+local listenerId = exports.gs_events:ListenTo('EVENT_ENTITY_DAMAGED', function(data)
     local entity     = data[1] -- damaged entity id
     local fromEntity = data[2] -- object (or ped id) that caused damage to the entity
     local weapon     = data[3] -- weaponHash that damaged the entity
